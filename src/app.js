@@ -1,7 +1,10 @@
 var koa = require('koa');
 var router = require('koa-router');
-
-app.use(router(app));
+var Connection = require('sequelize-connect');
+var orm = new Connection();
+var sequelize = orm.sequelize;
+var Sequelize = orm.Sequelize;
+var models = orm.models
 
 var app = koa();
 

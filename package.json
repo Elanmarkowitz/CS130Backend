@@ -1,7 +1,7 @@
 {
-  "name": "reThrift",
+  "name": "rethrift",
   "version": "1.0.0",
-  "description": "",
+  "description": "rethrift app",
   "main": "src/main.js",
   "scripts": {
     "server": "babel-watch src/main.js",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/pointatnick/Thrift.git"
   },
-  "author": "",
+  "author": "rethrift team",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pointatnick/Thrift/issues"
@@ -21,7 +21,10 @@
     "babel-watch": "^2.0.3-rc0",
     "bluebird": "^3.4.6",
     "koa": "^2.0.0",
-    "koa-router": "^7.0.1"
+    "koa-router": "^7.0.1",
+    "mysql": "^2.11.1",
+    "sequelize": "^3.24.6",
+    "sequelize-connect": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
