@@ -1,9 +1,10 @@
 var koa = require('koa');
-var db = require('./db');
-var middlewares = require('./lib/middlewares');
-var app = koa();
+var db = require('./platform/db');
+var mw = require('./lib/middlewares');
+var co = require('co');
 
-app.use(middlewares.router());
+var app = koa();
+//app.use(mw.router());
 
 app.use(function *(){
   var url = this.request.url;
@@ -11,3 +12,7 @@ app.use(function *(){
 });
 
 app.listen(3000);
+
+co(function *(){
+  var connection = null;
+})
