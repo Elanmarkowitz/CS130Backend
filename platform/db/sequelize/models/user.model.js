@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 isEmail: true
             }
-        }
+        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,

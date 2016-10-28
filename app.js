@@ -9,7 +9,7 @@ var app = koa();
 //app.use(mw.router());
 app.use(mw.bodyParser());
 
-router.post('/users', function *(next){
+router.post('/users', async (next) => {
   this.body = "hi user";
   console.log(next.request.body);
 });
