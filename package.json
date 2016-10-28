@@ -4,8 +4,7 @@
   "description": "rethrift app",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "server": "babel-watch app.js",
+    "start": "babel-watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
