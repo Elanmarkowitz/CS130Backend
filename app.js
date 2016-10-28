@@ -14,6 +14,10 @@ router.post('/users', async (next) => {
   console.log(next.request.body);
 });
 
+router.get('/', (ctx) => {
+  ctx.body = "hello world";
+})
+
 app.use(router.routes());
 
 app.use(function *(){
