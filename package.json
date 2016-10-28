@@ -20,6 +20,7 @@
   "dependencies": {
     "babel-watch": "^2.0.3-rc0",
     "bluebird": "^3.4.6",
+    "fs": "0.0.1-security",
     "koa": "^2.0.0",
     "koa-router": "^7.0.1",
     "mysql": "^2.11.1",
