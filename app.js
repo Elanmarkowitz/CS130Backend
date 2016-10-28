@@ -5,7 +5,7 @@ var co = require('co');
 
 const router = new mw.router();
 
-var app = koa();
+var app = new koa();
 //app.use(mw.router());
 app.use(mw.bodyParser());
 
@@ -25,4 +25,5 @@ co(function *(){
   var connection = null;
 })
 
+console.log("listening on port 3000");
 app.listen(3000);
