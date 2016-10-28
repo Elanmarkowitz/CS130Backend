@@ -10,7 +10,7 @@ var app = new koa();
 app.use(mw.bodyParser());
 
 router.post('/users', async (next) => {
-  this.body = "hi user";
+  next.body = "hi user";
   console.log(next.request.body);
 });
 
