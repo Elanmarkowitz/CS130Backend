@@ -2,9 +2,9 @@
   "name": "rethrift",
   "version": "1.0.0",
   "description": "rethrift app",
-  "main": "src/main.js",
+  "main": "app.js",
   "scripts": {
-    "server": "babel-watch src/main.js",
+    "server": "babel-watch src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
