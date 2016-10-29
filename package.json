@@ -9,17 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pointatnick/Thrift.git"
+    "url": "git+https://github.com/pointatnick/CS130Backend.git"
   },
   "author": "rethrift team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pointatnick/Thrift/issues"
+    "url": "https://github.com/pointatnick/CS130Backend/issues"
   },
-  "homepage": "https://github.com/pointatnick/Thrift#readme",
+  "homepage": "https://github.com/pointatnick/CS130Backend#readme",
   "dependencies": {
-    "babel": "^6.5.2",
-    "babel-watch": "^2.0.3-rc0",
     "bluebird": "^3.4.6",
     "co": "^4.6.0",
     "fs": "0.0.1-security",
@@ -32,19 +30,5 @@
     "pg": "^6.1.0",
     "sequelize": "^3.24.6",
     "sequelize-connect": "^2.0.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-core": "^6.17.0",
-    "babel-eslint": "^7.0.0",
-    "babel-preset-es2015-node6": "^0.3.0",
-    "babel-preset-stage-2": "^6.17.0",
-    "eslint": "^3.7.1"
-  },
-  "babel": {
-    "presets": [
-      "stage-2",
-      "es2015-node6"
-    ]
   }
 }
