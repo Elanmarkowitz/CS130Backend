@@ -29,5 +29,5 @@ co(function *(){
   var connection = null;
 })
 
-app.listen(3000);
-console.log("server online at port 3000");
+app.listen(process.env.PORT || 3000);
+console.log("server online at port " + process.env.PORT);
