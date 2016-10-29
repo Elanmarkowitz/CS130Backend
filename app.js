@@ -13,9 +13,9 @@ router.get('/', (ctx) => {
   ctx.body = "hello world";
 })
 
-router.post('/users', async (next) => {
-  next.body = "hi user";
-  console.log(next.request.body);
+router.post('/users', (ctx) => {
+  ctx.body = "hi user";
+  console.log(ctx.request.body);
 });
 
 app.use(router.routes());
