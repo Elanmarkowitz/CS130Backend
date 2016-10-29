@@ -14,8 +14,8 @@ router.post('/users', async (next) => {
   console.log(next.request.body);
 });
 
-router.get('/', (ctx) => {
-  ctx.body = "hello world";
+router.get('/', function *() {
+  this.body = "hello world";
 })
 
 app.use(router.routes());
@@ -29,5 +29,5 @@ co(function *(){
   var connection = null;
 })
 
-console.log("listening on port 3000");
+console.log("server online");
 app.listen(3000);
