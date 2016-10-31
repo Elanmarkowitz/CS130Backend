@@ -22,6 +22,6 @@ exports.createUser = function *(object){
     return newUser;
 }
 
-exports.findUser = function *(){
+exports.findAll = function *(){
     return yield db.sequelize.User.findAll();
 }
