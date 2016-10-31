@@ -28,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
                 is: ["^[a-z]+$", 'i']
             }
         }
+    }, {
+        associate: function(models) {
+            User.hasMany(models.Post);
+        }
     });
 
     return User;

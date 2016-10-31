@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/pointatnick/Thrift#readme",
   "dependencies": {
-    "babel-watch": "^2.0.3-rc0",
+    "babel-watch": "^2.0.3",
     "bluebird": "^3.4.6",
     "co": "^4.6.0",
     "fs": "0.0.1-security",

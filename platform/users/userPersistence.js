@@ -2,10 +2,10 @@ var db = require('../db');
 
 exports.getUser = function *(id){
     var id = Number(id);
-    var cachedUser = yield db.redis.get('/users/' + id);
-    if(cachedUser){
-        return JSON.parse(cachedUser);
-    }
+    // var cachedUser = yield db.redis.get('/users/' + id);
+    // if(cachedUser){
+    //     return JSON.parse(cachedUser);
+    // }
 
     var user = yield db.sequelize.User.find(Number(id));
     if(user){
@@ -14,10 +14,16 @@ exports.getUser = function *(id){
     return user;
 };
 
-exports.createUser = function *(name){
-    var newUser = yield db.sequelize.User.create({ name: name });
-    if(newUser){
-        yield db.redis.set('/users/' + newUser.id, JSON.stringify(newUser));
-    }
+exports.createUser = function *(firstName, lastName, email, username){
+    var newUser = yield db.sequelize.User.create(
+      {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        username: username
+      });
+    // if(newUser){
+    //     yield db.redis.set('/users/' + newUser.id, JSON.stringify(newUser));
+    // }
     return newUser;
 }
