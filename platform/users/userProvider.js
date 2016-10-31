@@ -8,14 +8,15 @@ exports.getUser = function *(id){
     return yield userPersistence.getUser(id);
 };
 
-exports.createUser = function *(object){
-    if(!name){
+exports.createUser = function(object){
+    if(!object){
         throw new Error("name must be specified");
     }
 
-    return yield userPersistence.createUser(object);
+    return userPersistence.createUser(object);
 }
 
-exports.findAll = function *(username){
-    return yield userPersistence.findAll();
+exports.findAll = function (){
+    console.log("finding users, 1");
+    return userPersistence.findAll();
 }

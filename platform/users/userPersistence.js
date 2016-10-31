@@ -14,14 +14,16 @@ exports.getUser = function *(id){
     return user;
 };
 
-exports.createUser = function *(object){
-    var newUser = yield db.sequelize.User.create(object);
+exports.createUser = function(object){
+    console.log("creating user");
+    var newUser = db.sequelize.User.create(object);
     // if(newUser){
     //     yield db.redis.set('/users/' + newUser.id, JSON.stringify(newUser));
     // }
     return newUser;
 }
 
-exports.findAll = function *(){
-    return yield db.sequelize.User.findAll();
+exports.findAll = function(){
+    console.log("finding users");
+    return db.sequelize.User.findAll();
 }

@@ -1,5 +1,5 @@
 var koa = require('koa');
-var pf = require('./platform/index');
+var pf = require('./platform');
 var db = require('./platform/db');
 var mw = require('./lib/middlewares');
 var co = require('co');
@@ -8,20 +8,22 @@ const router = new mw.router();
 const app = new koa();
 
 router.get('/', (ctx) => {
-  ctx.body = "hello world";
+    ctx.body = "hello world";
 })
 
 router.post('/users', (ctx) => {
-  pf.users.createUser(ctx.request.body);
-  console.log(ctx.request.body);
+    console.log(ctx.request.body);
+    ctx.body = "/users"
+    console.log(pf.users.createUser(ctx.request.body));
 })
 
-router.get('users/all', (ctx) => {
-    ctx.body = pf.users.findAll();
+router.get('/users/all', (ctx) => {
+    console.log("getting users");
+    console.log(pf.users.findAll());
 })
 
-co(function *(){
-  var connection = null;
+co(function*() {
+    var connection = null;
 })
 
 app.use(mw.bodyParser());

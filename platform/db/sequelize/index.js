@@ -5,7 +5,7 @@ var username = null;
 var password = null;
 var options = {
     dialect: "mysql",
-    port:    5432
+    port:    3000
 };
 var client = new Sequelize('rethrift-db', username, password, options);
 var models = {};
