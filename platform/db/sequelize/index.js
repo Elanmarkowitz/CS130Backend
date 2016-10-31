@@ -1,11 +1,11 @@
 var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
-var username = null;
-var password = null;
+var username = "rethrift";
+var password = "rethriftpassword";
 var options = {
     dialect: "mysql",
-    port:    3000
+    port:    3306
 };
 var client = new Sequelize('rethrift-db', username, password, options);
 var models = {};
@@ -26,6 +26,8 @@ Object.keys(models).forEach(function (modelName) {
         models[modelName].options.associate(models);
     }
 });
+
+client.sync();
 
 module.exports = models;
 module.exports.client = client;
