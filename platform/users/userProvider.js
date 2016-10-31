@@ -1,17 +1,21 @@
-var usersPersistence = require('./usersPersistence');
+var userPersistence = require('./userPersistence');
 
 exports.getUser = function *(id){
     if(!id){
         throw new Error("id must be specified");
     }
 
-    return yield usersPersistence.getUser(id);
+    return yield userPersistence.getUser(id);
 };
 
-exports.createUser = function *(name){
+exports.createUser = function *(object){
     if(!name){
         throw new Error("name must be specified");
     }
 
-    return yield usersPersistence.createUser(name);
+    return yield userPersistence.createUser(object);
+}
+
+exports.findAll = function *(username){
+    return yield userPersistence.findAll();
 }

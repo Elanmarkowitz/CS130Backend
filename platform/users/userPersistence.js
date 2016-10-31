@@ -7,23 +7,21 @@ exports.getUser = function *(id){
     //     return JSON.parse(cachedUser);
     // }
 
-    var user = yield db.sequelize.User.find(Number(id));
+    var user = yield db.sequelize.User.find();
     if(user){
         yield db.redis.set('/users/' + id, JSON.stringify(user));
     }
     return user;
 };
 
-exports.createUser = function *(firstName, lastName, email, username){
-    var newUser = yield db.sequelize.User.create(
-      {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        username: username
-      });
+exports.createUser = function *(object){
+    var newUser = yield db.sequelize.User.create(object);
     // if(newUser){
     //     yield db.redis.set('/users/' + newUser.id, JSON.stringify(newUser));
     // }
     return newUser;
+}
+
+exports.findUser = function *(){
+    return yield db.sequelize.User.findAll();
 }

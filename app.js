@@ -1,4 +1,5 @@
 var koa = require('koa');
+var pf = require('./platform/index');
 var db = require('./platform/db');
 var mw = require('./lib/middlewares');
 var co = require('co');
@@ -11,9 +12,13 @@ router.get('/', (ctx) => {
 })
 
 router.post('/users', (ctx) => {
-  ctx.body = "hi user";
+  pf.users.createUser(ctx.request.body);
   console.log(ctx.request.body);
-});
+})
+
+router.get('users/all', (ctx) => {
+    ctx.body = pf.users.findAll();
+})
 
 co(function *(){
   var connection = null;

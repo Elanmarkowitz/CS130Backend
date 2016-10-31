@@ -8,12 +8,17 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         price: {
-          type: DataTypes.DOUBLE
-        }
-    }, {
-        associate: function(models){
-          Post.belongsTo(models.User);
+            type: DataTypes.DOUBLE
         }
     });
-    return Location;
+    // }, {
+    //     associate: function(models) {
+    //         Post.belongsTo(models.User);
+    //     }
+    // }, {
+    //     associate: function(models) {
+    //         Post.hasOne(models.Location)
+    //     }
+    // });
+    return Post;
 }
