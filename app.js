@@ -4,26 +4,22 @@ var mw = require('./lib/middlewares');
 var co = require('co');
 
 const router = new mw.router();
+const app = new koa();
 
-var app = new koa();
-//app.use(mw.router());
-app.use(mw.bodyParser());
+router.get('/', (ctx) => {
+  ctx.body = "hello world";
+})
 
-router.post('/users', async (next) => {
-  this.body = "hi user";
-  console.log(next.request.body);
-});
-
-app.use(router.routes());
-
-app.use(function *(){
-  var url = this.request.url;
-  this.body = "hello world";
+router.post('/users', (ctx) => {
+  ctx.body = "hi user";
+  console.log(ctx.request.body);
 });
 
 co(function *(){
   var connection = null;
 })
 
-console.log("listening on port 3000");
-app.listen(3000);
+app.use(mw.bodyParser());
+app.use(router.routes());
+app.listen(process.env.PORT || 3000);
+console.log("server online at port " + process.env.PORT);
