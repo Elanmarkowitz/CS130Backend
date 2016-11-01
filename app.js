@@ -10,33 +10,23 @@ const app = new koa();
 router.get('/', (ctx) => {
     ctx.body = "hello world";
 })
-
-router.post('/users', (ctx) => {
-    console.log(ctx.request.body);
-    ctx.body = "/users"
-    console.log(pf.users.createUser(ctx.request.body));
-
+router.get('/test', function*(ctx, next){
+    ctx.body = "generator works";
 })
-router.get('/users/all', (ctx) => {
+router.post('/users', function*() {
+    this.response.body = "/users"
+    //var newuser = yield pf.users.createUser(this.request.body);
+})
+router.get('/users/all', function*() {
+    debugger
     console.log("getting users");
-    pf.users.findAll().then(
-        function(x){
-            if(x){
-                ctx.response.body = x;
-                //console.log(x);
-                //ctx.status = 200;
-            } else {
-                //console.log("none found");
-                //ctx.status = 400;
-            }
-        }
-    );
+    var users = yield pf.users.findAll();
+    this.response.status = 200;
 })
-router.get('/users/:id', function *() {
-    var ctx = this;
-    console.log("generating");
-    var user = yield pf.users.getUser(ctx.params.id);
-    if(user) ctx.response.status = 200;
+router.get('/users/:id', function*() {
+    console.log('test')
+    var user = yield pf.users.getUser(this.params.id);
+    if (user) this.response.status = 200;
     // then(
     //     function(x){
     //         if (x){
@@ -54,5 +44,6 @@ router.get('/users/:id', function *() {
 
 //app.use(mw.bodyParser());
 app.use(router.routes());
+app.use(router.allowedMethods())
 app.listen(process.env.PORT || 3000);
 console.log("server online at port " + (process.env.PORT ? process.env.Port:3000));
