@@ -17,6 +17,5 @@ exports.createUser = function(object){
 }
 
 exports.findAll = function (){
-    console.log("finding users, 1");
     return userPersistence.findAll();
 }

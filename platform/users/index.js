@@ -1,1 +1,1 @@
-module.exports = require('./userProvider')
+module.exports = require('./userPersistence')

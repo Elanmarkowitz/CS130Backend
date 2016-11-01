@@ -16,10 +16,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         }
-    // }, {
-    //     associate: function(models) {
-    //         User.hasMany(models.Post);
-    //     }
+    }, {
+        associate: function(models) {
+            User.hasMany(models.Post);
+        }
     });
 
     return User;

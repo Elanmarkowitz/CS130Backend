@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Post = sequelize.define('post', {
+    var Post = sequelize.define('Post', {
         title: {
             type: DataTypes.STRING,
             allowNull: false
@@ -10,15 +10,14 @@ module.exports = function(sequelize, DataTypes) {
         price: {
             type: DataTypes.DOUBLE
         }
+    }, {
+        associate: function(models) {
+            Post.belongsTo(models.User);
+        }
+    }, {
+        associate: function(models) {
+            Post.hasOne(models.Location)
+        }
     });
-    // }, {
-    //     associate: function(models) {
-    //         Post.belongsTo(models.User);
-    //     }
-    // }, {
-    //     associate: function(models) {
-    //         Post.hasOne(models.Location)
-    //     }
-    // });
     return Post;
 }
