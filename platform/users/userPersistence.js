@@ -1,6 +1,6 @@
 var db = require('../db');
 
-exports.getUser = function *(id){
+exports.getUser = function (id){
     if (typeof(id) === 'number') {
         var user = db.sequelize.User.findByID(id);
     }

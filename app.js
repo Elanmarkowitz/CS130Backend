@@ -32,11 +32,12 @@ router.get('/users/all', (ctx) => {
     );
 })
 router.get('/users/:id', (ctx) => {
-    console.log("generating");
+    console.log("getting user with id/username:" + ctx.params.id);
     ctx.response.status = 200;
     var user = pf.users.getUser(ctx.params.id);
     if(user) ctx.response.status = 200;
-    then(
+    debugger
+    user.then(
         function(x){
             if (x){
                 console.log(x.dataValues);
