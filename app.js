@@ -19,37 +19,32 @@ router.post('/users', (ctx) => {
 })
 router.get('/users/all', (ctx) => {
     console.log("getting users");
+    ctx.response.status = 200;
     pf.users.findAll().then(
         function(x){
             if(x){
                 ctx.response.body = x;
-                //console.log(x);
-                //ctx.status = 200;
+                console.log(x);
             } else {
-                //console.log("none found");
-                //ctx.status = 400;
+                console.log("none found");
             }
         }
     );
 })
-router.get('/users/:id', function *() {
-    var ctx = this;
+router.get('/users/:id', (ctx) => {
     console.log("generating");
-    var user = yield pf.users.getUser(ctx.params.id);
+    ctx.response.status = 200;
+    var user = pf.users.getUser(ctx.params.id);
     if(user) ctx.response.status = 200;
-    // then(
-    //     function(x){
-    //         if (x){
-    //             ctx.response.status = 200;
-    //             ctx.response.body = x.dataValues;
-    //             console.log(x.dataValues);
-    //         } else {
-    //             ctx.response.status = 400
-    //             console.log("user not found");
-    //         }
-    //     }
-    // );
-    //console.log("getting user: " + ctx.params.id);
+    then(
+        function(x){
+            if (x){
+                console.log(x.dataValues);
+            } else {
+                console.log("user not found");
+            }
+        }
+    );
 })
 
 //app.use(mw.bodyParser());
