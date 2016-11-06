@@ -37,5 +37,11 @@
     "pg": "^6.1.0",
     "sequelize": "^3.24.6",
     "sequelize-connect": "^2.0.0"
+  },
+  "babel": {
+    "presets": [
+      "stage-2",
+      "es2015-node6"
+    ]
   }
 }
