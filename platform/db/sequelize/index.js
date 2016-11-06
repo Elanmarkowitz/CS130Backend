@@ -7,7 +7,7 @@ if (heroku_deploy){
     var username = 'b174a5579cb408';
     var password = 'a71e760d';
     var options = {
-        host: 'us-cdbr-iron-east-04.cleardb.net'
+        host: 'us-cdbr-iron-east-04.cleardb.net',
         dialect: "mysql",
         port:    3306
     }
@@ -16,12 +16,12 @@ if (heroku_deploy){
     var username = "rethrift";
     var password = "rethriftpassword";
     var options = {
-        host: 'localhost'
+        host: 'localhost',
         dialect: "mysql",
         port:    3306
     }
 }
-var client = new Sequelize(host, username, password, options);
+var client = new Sequelize(name, username, password, options);
 var models = {};
 
 // read all models and import them into the "db" object
