@@ -16,7 +16,7 @@ if (heroku_deploy){
     var username = "rethrift";
     var password = "rethriftpassword";
     var options = {
-        host: 'localhost'
+        host: 'localhost',
         dialect: "mysql",
         port:    3306
     }
