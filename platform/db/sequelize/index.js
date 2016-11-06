@@ -7,7 +7,7 @@ if (heroku_deploy){
     var username = 'b174a5579cb408';
     var password = 'a71e760d';
     var options = {
-        host: 'us-cdbr-iron-east-04.cleardb.net'
+        host: 'us-cdbr-iron-east-04.cleardb.net',
         dialect: "mysql",
         port:    3306
     }
