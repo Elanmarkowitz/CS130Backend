@@ -22,7 +22,7 @@ if (heroku_deploy){
     }
 }
 //var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.DATABASE_URL);
+var client = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 client
   .authenticate()
   .then(function(err) {
