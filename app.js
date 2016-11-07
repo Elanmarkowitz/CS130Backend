@@ -43,4 +43,4 @@ app.use(router.routes());
 //app.use(mw.mount('/users', services.users));
 //app.use(mw.mount('/users', services.posts));
 app.listen(process.env.PORT || 3000);
-console.log("server online at port " + (process.env.PORT ? process.env.Port:3000));
+console.log("server online at port " + (process.env.PORT ? process.env.PORT:3000));
