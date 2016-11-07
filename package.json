@@ -6,7 +6,7 @@
   "scripts": {
     "start": "call ./node_modules/.bin/babel-node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transpile": "call ./node_modules/.bin/babel app.js --out-file production.js || true",
+    "transpile": "./node_modules/.bin/babel app.js --out-file production.js || true",
     "debug": "call ./node_modules/.bin/babel-node debug app.js",
     "heroku": "node production.js"
   },

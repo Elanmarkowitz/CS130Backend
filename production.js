@@ -1,51 +1,68 @@
 'use strict';
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var _ = require('lodash');
 var koa = require('koa');
 var pf = require('./platform');
-var db = require('./platform/db');
 var mw = require('./lib/middlewares');
-var co = require('co');
+var services = require('./services');
 
 const router = new mw.router();
 const app = new koa();
 
-router.get('/', ctx => {
-    ctx.body = "hello world";
-});
+var _ = require('lodash');
 
-router.post('/users', ctx => {
-    console.log(ctx.request.body);
-    ctx.body = "/users";
-    console.log(pf.users.createUser(ctx.request.body));
-});
-router.get('/users/all', ctx => {
-    console.log("getting users");
-    ctx.response.status = 200;
-    pf.users.findAll().then(function (x) {
-        if (x) {
-            ctx.response.body = x;
-            console.log(x);
-        } else {
-            console.log("none found");
+var createUser = (() => {
+    var _ref = _asyncToGenerator(function* (ctx) {
+        console.log("creating users: " + ctx.request.body);
+        pf.users.createUser(ctx.request.body);
+    });
+
+    return function createUser(_x) {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+var getAllUsers = (() => {
+    var _ref2 = _asyncToGenerator(function* (ctx) {
+        console.log("getting users");
+        ctx.response.status = 400;
+        var users = yield pf.users.findAll();
+        if (users) {
+            ctx.response.status = 200;
+            ctx.response.body = _.map(users, 'dataValues');
         }
     });
-});
-router.get('/users/:id', ctx => {
-    console.log("getting user with id/username:" + ctx.params.id);
-    ctx.response.status = 200;
-    var user = pf.users.getUser(ctx.params.id);
-    if (user) ctx.response.status = 200;
-    debugger;
-    user.then(function (x) {
-        if (x) {
-            console.log(x.dataValues);
-        } else {
-            console.log("user not found");
+
+    return function getAllUsers(_x2) {
+        return _ref2.apply(this, arguments);
+    };
+})();
+
+var getUser = (() => {
+    var _ref3 = _asyncToGenerator(function* (ctx) {
+        debugger;
+        console.log("getting user with id/username:" + ctx.params.id);
+        ctx.response.status = 400;
+        var user = yield pf.users.getUser(ctx.params.id);
+        if (user) {
+            ctx.response.status = 200;
+            ctx.response.body = user.dataValues;
         }
     });
-});
 
-//app.use(mw.bodyParser());
+    return function getUser(_x3) {
+        return _ref3.apply(this, arguments);
+    };
+})();
+router.post('/users/create', createUser);
+router.get('/users/all', getAllUsers);
+router.get('/users/:id', getUser);
+
 app.use(router.routes());
+
+//app.use(mw.mount('/users', services.users));
+//app.use(mw.mount('/users', services.posts));
 app.listen(process.env.PORT || 3000);
 console.log("server online at port " + (process.env.PORT ? process.env.Port : 3000));
