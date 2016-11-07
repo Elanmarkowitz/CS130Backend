@@ -22,10 +22,16 @@ if (heroku_deploy){
     }
 }
 //var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.CLEARDB_DATABASE_URL, function(err, client) {
-  if (err) throw err;
-  console.log('Connected to mysql!');
-});
+var client = new Sequelize(process.env.DATABASE_URL);
+client
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
+
 var models = {};
 
 // read all models and import them into the "db" object
