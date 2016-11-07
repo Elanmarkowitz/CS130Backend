@@ -9,7 +9,7 @@ if (heroku_deploy){
     var options = {
         host: 'us-cdbr-iron-east-04.cleardb.net',
         dialect: "mysql",
-        port:    3000
+        port:    3306
     }
 } else {
     var name = 'rethrift-db';
