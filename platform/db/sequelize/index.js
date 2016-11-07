@@ -22,6 +22,7 @@ if (heroku_deploy){
     }
 }
 var client = new Sequelize(name, username, password, options);
+client.authenticate();
 var models = {};
 
 // read all models and import them into the "db" object
