@@ -37,9 +37,7 @@
     "lodash": "^4.16.6",
     "mysql2": "^1.1.1",
     "path": "^0.12.7",
-    "pg": "^6.1.0",
-    "sequelize": "^3.24.6",
-    "sequelize-connect": "^2.0.0"
+    "sequelize": "^3.24.6"
   },
   "babel": {
     "presets": [
