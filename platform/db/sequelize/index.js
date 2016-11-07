@@ -22,7 +22,10 @@ if (heroku_deploy){
     }
 }
 //var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.DATABASE_URL);
+var client = new Sequelize(process.env.DATABASE_URL, function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+});
 var models = {};
 
 // read all models and import them into the "db" object
