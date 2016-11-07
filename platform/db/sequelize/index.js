@@ -22,9 +22,9 @@ if (heroku_deploy){
     }
 }
 //var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.DATABASE_URL, function(err, client) {
+var client = new Sequelize(process.env.CLEARDB_DATABASE_URL, function(err, client) {
   if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
+  console.log('Connected to mysql!');
 });
 var models = {};
 
