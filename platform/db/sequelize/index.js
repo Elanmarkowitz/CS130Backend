@@ -21,12 +21,8 @@ if (heroku_deploy){
         port:    3306
     }
 }
-var client = new Sequelize(name, username, password, options);
-client.authenticate().then(function(err) {
-  console.log('Connection has been established successfully');
-}, function(err) {
-  console.log('Unable to connect to database: ', err);
-});
+//var client = new Sequelize(name, username, password, options);
+var client = new Sequelize(process.env.DATABASE_URL);
 var models = {};
 
 // read all models and import them into the "db" object
