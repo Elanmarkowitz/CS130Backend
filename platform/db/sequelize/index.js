@@ -9,7 +9,12 @@ if (heroku_deploy){
     var options = {
         host: 'us-cdbr-iron-east-04.cleardb.net',
         dialect: "mysql",
-        port:    3306
+        port:    3306,
+        pool: {
+          max: 5,
+          min: 0,
+          idle: 10000
+        }
     }
 } else {
     var name = 'rethrift-db';
@@ -21,8 +26,8 @@ if (heroku_deploy){
         port:    3306
     }
 }
-//var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+var client = new Sequelize(name, username, password, options);
+//var client = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 var models = {};
 
 // read all models and import them into the "db" object
