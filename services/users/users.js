@@ -2,7 +2,7 @@ var pf = require('../../platform');
 var _ =  require('lodash');
 
 var createUser = async (ctx) => {
-    console.log("creating users: " + ctx.request.body)
+    console.log("creating users: " + ctx.request.body);
     pf.users.createUser(ctx.request.body);
 }
 
