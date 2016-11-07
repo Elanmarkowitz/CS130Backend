@@ -26,8 +26,8 @@ if (heroku_deploy){
         port:    3306
     }
 }
-var client = new Sequelize(name, username, password, options);
-//var client = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+//var client = new Sequelize(name, username, password, options);
+var client = new Sequelize('mysql://b174a5579cb408:a71e760d@us-cdbr-iron-east-04.cleardb.net/heroku_303e07628ba128d?reconnect=true', {});
 var models = {};
 
 // read all models and import them into the "db" object
