@@ -11,7 +11,7 @@ var _ =  require('lodash');
 
 var createUser = async (ctx) => {
     console.log("creating users: " + ctx.request.body)
-    pf.users.createUser(ctx.request.body);
+    pf.users.createUser(JSON.parse(ctx.request.body));
 }
 
 var getAllUsers =  async (ctx) => {
