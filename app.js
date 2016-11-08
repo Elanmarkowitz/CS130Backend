@@ -6,12 +6,15 @@ var services = require('./services');
 
 const router = new mw.router();
 const app = new koa();
+const bodyParser = new mw.bodyParser();
 
 var _ =  require('lodash');
 
+app.use(bodyParser);
+
 var createUser = async (ctx) => {
     console.log("creating users: " + ctx.request.body)
-    pf.users.createUser(JSON.parse(ctx.request.body));
+    pf.users.createUser(ctx.request.body);
 }
 
 var getAllUsers =  async (ctx) => {

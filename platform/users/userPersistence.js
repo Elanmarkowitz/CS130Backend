@@ -15,6 +15,7 @@ exports.getUser = function (id){
 };
 
 exports.createUser = function(object){
+    console.log(object);
     var newUser = db.sequelize.User.create(object);
     return newUser;
 }
