@@ -1,11 +1,12 @@
 var db = require('../db');
+var userFunctions = require('../users');
 
-exports.getPost = function *(id){
+exports.getPost = function (id){
     if (typeof(id) === 'number') {
-        var post = yield db.sequelize.Post.findByID(id);
+        var post = db.sequelize.Post.findByID(id);
     }
     if (typeof(id) === 'string') {
-        var post = yield db.sequelize.Post.findOne({
+        var post = db.sequelize.Post.findOne({
             where: {
                 title: id
             }
@@ -14,11 +15,22 @@ exports.getPost = function *(id){
     return post;
 };
 
-exports.createPost = function *(object){
-    var newPost = yield db.sequelize.Post.create(object);
+exports.createPost = async (object) => {
+    debugger
+    var username = object.username;
+    delete object.userID;
+    var newPost = await db.sequelize.Post.create(object);
+    var postID = newPost.dataValues.id;
+    debugger
+    var associatedUser = await userFunctions.getUser(username);
+    var userID = associatedUser.dataValues.id;
+    debugger
+    newPost = await newPost.setUser([userID]);
+    associatedUser = await associatedUser.addPost([postID]);
+    debugger
     return newPost;
 }
 
-exports.findAll = function *(){
-    return yield db.sequelize.Post.findAll();
+exports.findAll = function (){
+    return db.sequelize.Post.findAll();
 }

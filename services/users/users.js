@@ -3,7 +3,10 @@ var _ =  require('lodash');
 
 var createUser = async (ctx) => {
     console.log("creating users: " + ctx.request.body);
-    pf.users.createUser(ctx.request.body);
+    var user = await pf.users.createUser(ctx.request.body);
+    if (user) {
+        ctx.response.status = 200;
+    }
 }
 
 var getAllUsers =  async (ctx) => {
@@ -17,7 +20,6 @@ var getAllUsers =  async (ctx) => {
 }
 
 var getUser = async (ctx) => {
-    debugger
     console.log("getting user with id/username:" + ctx.params.id);
     ctx.response.status = 400;
     var user = await pf.users.getUser(ctx.params.id);
@@ -27,7 +29,8 @@ var getUser = async (ctx) => {
     }
 }
 exports.register = (router) => {
-    router.post('/create', createUser);
-    router.get('/all', getAllUsers);
-    router.get('/:id', getUser);
+    router.post('/users/create', createUser);
+    router.get('/users/all', getAllUsers);
+    router.get('/users/:id', getUser);
+    //router.get('/users/:id/posts', getUserPosts);
 }

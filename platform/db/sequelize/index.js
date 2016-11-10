@@ -21,8 +21,8 @@ if (heroku_deploy){
         port:    3306
     }
 }
-//var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.DATABASE_URL);
+var client = new Sequelize(name, username, password, options);
+//var client = new Sequelize(process.env.DATABASE_URL);
 client
   .authenticate()
   .then(function(err) {
@@ -46,6 +46,7 @@ fs
     });
 
 Object.keys(models).forEach(function (modelName) {
+    debugger
     if (models[modelName].options.hasOwnProperty('associate')) {
         models[modelName].options.associate(models);
     }
