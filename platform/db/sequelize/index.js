@@ -21,7 +21,8 @@ if (heroku_deploy){
         port:    3306
     }
 }
-var client = new Sequelize(name, username, password, options);
+//var client = new Sequelize(name, username, password, options);
+var client = new Sequelize(process.env.DATABASE_URL);
 client
   .authenticate()
   .then(function(err) {
