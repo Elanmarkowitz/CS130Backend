@@ -51,7 +51,7 @@ Object.keys(models).forEach(function (modelName) {
     }
 });
 
-client.sync({force:true});
+client.sync();
 
 module.exports = models;
 module.exports.client = client;
