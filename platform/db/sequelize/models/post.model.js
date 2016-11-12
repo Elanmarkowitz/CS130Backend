@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         price: {
-            type: DataTypes.DOUBLE
+            type: DataTypes.DOUBLE,
+            allowNull: false
         }
     }, {
         associate: function(models) {
