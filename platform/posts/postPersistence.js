@@ -1,11 +1,11 @@
 var db = require('../db');
 
-exports.getPost = function *(id){
+exports.getPost = function (id){
     if (typeof(id) === 'number') {
-        var post = yield db.sequelize.Post.findByID(id);
+        var post = db.sequelize.Post.findByID(id);
     }
     if (typeof(id) === 'string') {
-        var post = yield db.sequelize.Post.findOne({
+        var post = db.sequelize.Post.findOne({
             where: {
                 title: id
             }
@@ -14,11 +14,12 @@ exports.getPost = function *(id){
     return post;
 };
 
-exports.createPost = function *(object){
-    var newPost = yield db.sequelize.Post.create(object);
+exports.createPost = function (object){
+    console.log(object);
+    var newPost = db.sequelize.Post.create(object);
     return newPost;
 }
 
-exports.findAll = function *(){
-    return yield db.sequelize.Post.findAll();
+exports.findAll = function (){
+    return db.sequelize.Post.findAll();
 }
