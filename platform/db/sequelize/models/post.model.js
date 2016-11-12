@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         price: {
-            type: DataTypes.DOUBLE,
+            type: DataTypes.STRING,
             allowNull: false
         }
     }, {
