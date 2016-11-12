@@ -3,4 +3,4 @@ var router = new Router();
 
 require('./users').register(router);
 
-module.exports = router.middleware();
+module.exports = router;

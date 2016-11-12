@@ -1,4 +1,5 @@
 var db = require('../db');
+var userFunctions = require('../users');
 
 exports.getPost = function (id){
     if (typeof(id) === 'number') {
@@ -14,9 +15,13 @@ exports.getPost = function (id){
     return post;
 };
 
-exports.createPost = function (object){
-    console.log(object);
-    var newPost = db.sequelize.Post.create(object);
+exports.createPost = async (object, username) => {
+    var newPost = await db.sequelize.Post.create(object);
+    var postID = newPost.dataValues.id;
+    var associatedUser = await userFunctions.getUser(username);
+    var userID = associatedUser.dataValues.id;
+    newPost = await newPost.setUser([userID]);
+    associatedUser = await associatedUser.addPost([postID]);
     return newPost;
 }
 

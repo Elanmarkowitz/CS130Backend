@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
-var heroku_deploy = true;
+var heroku_deploy = false;
 if (heroku_deploy){
     var name = 'heroku_303e07628ba128d';
     var username = 'b174a5579cb408';
@@ -21,8 +21,7 @@ if (heroku_deploy){
         port:    3306
     }
 }
-//var client = new Sequelize(name, username, password, options);
-var client = new Sequelize(process.env.DATABASE_URL);
+var client = new Sequelize(name, username, password, options);
 client
   .authenticate()
   .then(function(err) {
