@@ -13,7 +13,7 @@ var _ =  require('lodash');
 app.use(bodyParser);
 
 var createUser = async (ctx) => {
-    console.log("creating users: " + ctx.request.body)
+    console.log("creating user: " + ctx.request.body)
     pf.users.createUser(ctx.request.body);
 }
 
@@ -37,9 +37,17 @@ var getUser = async (ctx) => {
         ctx.response.body = user.dataValues;
     }
 }
+
+var createPost = async (ctx) => {
+    console.log("creating post: " + ctx.request.body)
+    pf.posts.createPost(ctx.request.body);
+}
+
 router.post('/users/create', createUser);
 router.get('/users/all', getAllUsers);
 router.get('/users/:id', getUser);
+
+router.post('/posts/create', createPost);
 
 app.use(router.routes());
 
