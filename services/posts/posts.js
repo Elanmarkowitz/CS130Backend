@@ -2,8 +2,10 @@ var pf = require('../../platform');
 var _ =  require('lodash');
 
 var createPost = async (ctx) => {
+    debugger
     console.log("creating posts: " + ctx.request.body);
-    var post = await pf.posts.createPost(ctx.request.body);
+    ctx.response.status = 400;
+    var post = await pf.posts.createPost(ctx.request.body, ctx.params.username);
     if (post){
         ctx.response.status = 200;
     }
@@ -29,7 +31,7 @@ var getPost = async (ctx) => {
     }
 }
 exports.register = (router) => {
-    router.post('/posts/create', createPost);
+    router.post('/posts/create/:username', createPost);
     router.get('/posts/all', getAllPosts);
     router.get('/posts/:id', getPost);
 }

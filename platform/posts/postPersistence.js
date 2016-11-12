@@ -15,19 +15,13 @@ exports.getPost = function (id){
     return post;
 };
 
-exports.createPost = async (object) => {
-    debugger
-    var username = object.username;
-    delete object.userID;
+exports.createPost = async (object, username) => {
     var newPost = await db.sequelize.Post.create(object);
     var postID = newPost.dataValues.id;
-    debugger
     var associatedUser = await userFunctions.getUser(username);
     var userID = associatedUser.dataValues.id;
-    debugger
     newPost = await newPost.setUser([userID]);
     associatedUser = await associatedUser.addPost([postID]);
-    debugger
     return newPost;
 }
 

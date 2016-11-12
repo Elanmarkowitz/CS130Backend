@@ -13,10 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         associate: function(models) {
             Post.belongsTo(models.User);
-        }
-    }, {
-        associate: function(models) {
-            Post.hasOne(models.Location)
+            Post.hasOne(models.Location);
         }
     });
     return Post;
