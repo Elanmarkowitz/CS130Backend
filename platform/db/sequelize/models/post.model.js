@@ -10,6 +10,17 @@ module.exports = function(sequelize, DataTypes) {
         price: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        image: {
+            type: DataTypes.TEXT
         }
     }, {
         associate: function(models) {
