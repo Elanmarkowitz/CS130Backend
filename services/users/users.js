@@ -28,9 +28,20 @@ var getUser = async (ctx) => {
         ctx.response.body = user.dataValues;
     }
 }
+
+var getUserPosts = async (ctx) => {
+    console.log("getting " + ctx.params.id + "'s posts");
+    ctx.response.status = 400;
+    var posts = await pf.users.getUserPosts(ctx.params.id);
+    if (posts){
+        ctx.response.status = 200;
+        ctx.response.body = _.map(posts, 'dataValues');
+    }
+}
+
 exports.register = (router) => {
     router.post('/users/create', createUser);
     router.get('/users/all', getAllUsers);
     router.get('/users/:id', getUser);
-    //router.get('/users/:id/posts', getUserPosts);
+    router.get('/users/:id/posts', getUserPosts);
 }

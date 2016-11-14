@@ -2,7 +2,6 @@ var pf = require('../../platform');
 var _ =  require('lodash');
 
 var createPost = async (ctx) => {
-    debugger
     console.log("creating posts: " + ctx.request.body);
     ctx.response.status = 400;
     var post = await pf.posts.createPost(ctx.request.body, ctx.params.username);
