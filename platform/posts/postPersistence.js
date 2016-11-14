@@ -21,7 +21,7 @@ exports.createPost = async (object, username) => {
     var associatedUser = await userFunctions.getUser(username);
     var userID = associatedUser.dataValues.id;
     newPost = await newPost.setUser(userID);
-    associatedUser = await associatedUser.addPost(postID);
+    associatedUser = await associatedUser.addPost([postID]);
     return newPost;
 }
 
