@@ -21,6 +21,12 @@ module.exports = function(sequelize, DataTypes) {
         },
         image: {
             type: DataTypes.TEXT
+        },
+        longitude: {
+            type: DataTypes.DOUBLE
+        },
+        latitude: {
+            type: DataTypes.DOUBLE
         }
     }, {
         associate: function(models) {
