@@ -2,7 +2,7 @@ var db = require('../db');
 
 exports.getUser = function (id){
     if (typeof(id) === 'number') {
-        var user = db.sequelize.User.findByID(id);
+        var user = db.sequelize.User.findById(id);
     }
     if (typeof(id) === 'string') {
         var user = db.sequelize.User.findOne({

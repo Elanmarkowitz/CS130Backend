@@ -3,7 +3,7 @@ var userFunctions = require('../users');
 
 exports.getPost = function (id){
     if (typeof(id) === 'number') {
-        var post = db.sequelize.Post.findByID(id);
+        var post = db.sequelize.Post.findById(id);
     }
     if (typeof(id) === 'string') {
         var post = db.sequelize.Post.findOne({
