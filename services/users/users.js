@@ -24,7 +24,11 @@ var getUser = async (ctx) => {
     console.log(intId);
     console.log("getting user with id/username:" + ctx.params.id);
     ctx.response.status = 400;
-    var user = await pf.users.getUser(ctx.params.id);
+    if (typeof(intId) === 'number') {
+        var user = await pf.users.getUser(intId);
+    } else {
+        var user = await pf.users.getUser(ctx.params.id);
+    }
     if (user){
         ctx.response.status = 200;
         ctx.response.body = user.dataValues;
