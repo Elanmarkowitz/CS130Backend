@@ -20,6 +20,8 @@ var getAllUsers =  async (ctx) => {
 }
 
 var getUser = async (ctx) => {
+    intId = parseInt(id, 10);
+    console.log(intId);
     console.log("getting user with id/username:" + ctx.params.id);
     ctx.response.status = 400;
     var user = await pf.users.getUser(ctx.params.id);
