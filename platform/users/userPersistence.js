@@ -25,7 +25,8 @@ exports.findAll = function(){
 }
 
 exports.getUserPosts = async function(id){
-    if (typeof(id) === 'number') {
+    intId = parseInt(id, 10);
+    if (typeof(intId) === 'number') {
         var user = await db.sequelize.User.findByID(id);
     }
     if (typeof(id) === 'string') {
