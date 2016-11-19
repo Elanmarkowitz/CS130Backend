@@ -21,10 +21,9 @@ var getAllUsers =  async (ctx) => {
 
 var getUser = async (ctx) => {
     var intId = parseInt(ctx.params.id, 10);
-    console.log(intId);
     console.log("getting user with id/username:" + ctx.params.id);
     ctx.response.status = 400;
-    if (typeof(intId) === 'number') {
+    if (!isNaN(intId)) {
         var user = await pf.users.getUser(intId);
     } else {
         var user = await pf.users.getUser(ctx.params.id);
