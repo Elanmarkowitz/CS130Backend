@@ -27,6 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         associate: function(models) {
             User.hasMany(models.Post);
+            User.hasOne(models.Watchlist);
         }
     });
 

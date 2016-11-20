@@ -44,9 +44,34 @@ var getUserPosts = async (ctx) => {
     }
 }
 
+var getUserPosts = async (ctx) => {
+    console.log("getting " + ctx.params.id + "'s watchlist");
+    ctx.response.status = 400;
+    var posts = await pf.users.getWatchlist(ctx.params.id);
+    if (posts){
+        ctx.response.status = 200;
+        ctx.response.body = _.map(posts, 'dataValues');
+    }
+}
+
+var addToWatchlist = async (ctx) => {
+    console.log("adding post to watchlist");
+    await pf.users.addToWatchlist(ctx.params.id, ctx.request.body.postID);
+    ctx.request.status = 200;
+}
+
+var removeFromWatchlist = async (ctx) => {
+    console.log("removing post from watchlist");
+    await pf.users.removeFromWatchlist(ctx.params.id, ctx.request.body.postID);
+    ctx.request.status = 200;
+}
+
 exports.register = (router) => {
     router.post('/users/create', createUser);
     router.get('/users/all', getAllUsers);
     router.get('/users/:id', getUser);
     router.get('/users/:id/posts', getUserPosts);
+    router.get('/users/:id/watchlist', getWatchlist);
+    router.post('/users/:id/watch', addToWatchlist);
+    router.post('/users/:id/unwatch', removeFromWatchlist);
 }
