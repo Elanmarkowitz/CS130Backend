@@ -44,10 +44,10 @@ var getUserPosts = async (ctx) => {
     }
 }
 
-var getUserPosts = async (ctx) => {
+var getWatchlist = async (ctx) => {
     console.log("getting " + ctx.params.id + "'s watchlist");
     ctx.response.status = 400;
-    var posts = await pf.users.getWatchlist(ctx.params.id);
+    var posts = await pf.users.getWatchedPosts(ctx.params.id);
     if (posts){
         ctx.response.status = 200;
         ctx.response.body = _.map(posts, 'dataValues');
@@ -66,6 +66,16 @@ var removeFromWatchlist = async (ctx) => {
     ctx.request.status = 200;
 }
 
+var getNotifications = async (ctx) => {
+    console.log('getting ' + ctx.params.id + "'s notifications");
+    ctx.request.status = 400;
+    var posts = await pf.users.getNotifications(ctx.params.id, ctx.query.timestamp);
+    if (posts) {
+        ctx.request.status = 200;
+        ctx.request.body = posts;
+    }
+}
+
 exports.register = (router) => {
     router.post('/users/create', createUser);
     router.get('/users/all', getAllUsers);
@@ -74,4 +84,5 @@ exports.register = (router) => {
     router.get('/users/:id/watchlist', getWatchlist);
     router.post('/users/:id/watch', addToWatchlist);
     router.post('/users/:id/unwatch', removeFromWatchlist);
+    router.get('/users/:id/notifications', getNotifications);
 }

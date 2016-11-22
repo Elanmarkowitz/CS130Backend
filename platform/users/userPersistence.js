@@ -1,4 +1,5 @@
 var db = require('../db');
+var _ = require('lodash');
 
 var getUser = exports.getUser = async function (id){
     if (typeof(id) === 'number') {
@@ -33,15 +34,20 @@ exports.getUserPosts = async function(id){
 };
 
 var getWatchlist = exports.getWatchlist = async function(userID){
-    var user = await getUser(id);
+    var user = await getUser(userID);
     var watchlist = await user.getWatchlist();
+    return watchlist;
+}
+
+exports.getWatchedPosts = async function(userID){
+    var watchlist = await getWatchlist(userID);
     var posts = await watchlist.getPosts();
     return posts;
 }
 
 exports.addToWatchlist = async function(userID, postID){
     var watchlist = await getWatchlist(userID);
-    await watchlist.removePost(postID);
+    await watchlist.addPost(postID);
     return
 }
 
@@ -49,4 +55,12 @@ exports.removeFromWatchlist = async function(userID, postID){
     var watchlist = await getWatchlist(userID);
     await watchlist.removePost(postID);
     return
+}
+
+exports.getNotifications = async function(userID, lastcheck){
+    var watchlist = await getWatchlist(userID);
+    var posts = _.filter(_.map(results, 'dataValues'), (posts) => {
+        debugger
+        return (new Date(posts.updatedAt) > new Date(lastcheck));
+    });
 }

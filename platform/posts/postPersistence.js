@@ -25,6 +25,15 @@ exports.createPost = async (object, username) => {
     return newPost;
 }
 
+exports.updatePost = async () => {
+
+}
+
 exports.findAll = function (){
     return db.sequelize.Post.findAll();
+}
+
+exports.searchPosts = async function(searchterms){
+    var results = await db.sequelize.Post.findAll(searchterms);
+    return results;
 }

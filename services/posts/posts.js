@@ -34,7 +34,7 @@ var searchPosts = async (ctx) => {
     console.log("searching posts");
     ctx.response.status = 400;
     var searchterms = JSON.parse(ctx.query.searchterms);
-    //var results = await pf.posts.searchPosts(searchterms);
+    var results = await pf.posts.searchPosts(searchterms);
     if (results){
         ctx.response.status = 200;
         ctx.response.body = _.map(results, 'dataValues');
