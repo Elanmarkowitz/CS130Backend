@@ -1,7 +1,7 @@
 var db = require('../db');
 var userFunctions = require('../users');
 
-exports.getPost = function (id){
+var getPost = exports.getPost = function (id){
     if (typeof(id) === 'number') {
         var post = db.sequelize.Post.findById(id);
     }
@@ -36,4 +36,11 @@ exports.findAll = function (){
 exports.searchPosts = async function(searchterms){
     var results = await db.sequelize.Post.findAll(searchterms);
     return results;
+}
+
+exports.deletePost = async function (postID){
+    var post = await getPost(postID);
+    if (!post) {return false}
+    var results = await post.destroy();
+    return true
 }
