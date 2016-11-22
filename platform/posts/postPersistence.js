@@ -25,8 +25,10 @@ exports.createPost = async (object, username) => {
     return newPost;
 }
 
-exports.updatePost = async () => {
-
+exports.updatePost = async (postID, updateVals) => {
+    var post = await getPost(postID);
+    post = await post.update(updateVals);
+    return post;
 }
 
 exports.findAll = function (){

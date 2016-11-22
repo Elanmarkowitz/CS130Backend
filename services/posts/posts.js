@@ -47,10 +47,17 @@ var deletePost = async (ctx) => {
     ctx.response.status = status ? 200 : 400;
 }
 
+var updatePost = async (ctx) => {
+    console.log('updating post');
+    var update = await pf.posts.updatePost(ctx.request.body.postID, ctx.request.body.updateVals);
+    ctx.response.status = update ? 200 : 400;
+}
+
 exports.register = (router) => {
     router.post('/posts/create/:username', createPost);
     router.post('/posts/delete', deletePost);
     router.get('/posts/all', getAllPosts);
     router.get('/posts/search', searchPosts);
     router.get('/posts/one/:id', getPost);
+    router.post('/posts/update', updatePost);
 }
