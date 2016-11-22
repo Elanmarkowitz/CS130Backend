@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         price: {
-            type: DataTypes.STRING,
+            type: DataTypes.DOUBLE,
             allowNull: false
         },
         category: {
@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         associate: function(models) {
             Post.belongsTo(models.User);
-            Post.hasOne(models.Location);
+            Post.belongsToMany(models.Watchlist, {through: 'WatchlistPost'});
         }
     });
     return Post;

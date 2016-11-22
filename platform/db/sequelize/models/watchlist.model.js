@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Watchlist = sequelize.define('Watchlist', {
     }, {
         associate: function(models) {
-            Watchlist.hasMany(models.Post);
+            Watchlist.belongsToMany(models.Post, {through: 'WatchlistPost'});
             Watchlist.belongsTo(models.User);
         }
     });
