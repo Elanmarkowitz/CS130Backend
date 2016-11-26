@@ -45,5 +45,8 @@
       "stage-2",
       "es2015-node6"
     ]
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
   }
 }
