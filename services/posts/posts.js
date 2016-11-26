@@ -36,7 +36,6 @@ var searchPosts = async (ctx) => {
     console.log("searching posts");
     ctx.response.status = 400;
     var searchterms = JSON.parse(ctx.query.searchterms);
-    debugger
     var location = ctx.query.locationterm ? JSON.parse(ctx.query.locationterm) : false;
     var results = await pf.posts.searchPosts(searchterms, location);
     if (results){

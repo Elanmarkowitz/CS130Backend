@@ -15,8 +15,7 @@
 		"d9dc500a-dd3b-554f-75d5-6b0c7321eebe",
 		"287c443e-9b2e-005e-2d5b-e8b953985a9d",
 		"b7230399-6af7-bbc2-b14d-c5b9c98b8880",
-		"855dfbfc-8f89-24a5-d165-ea245daf8485",
-		"a59321fe-e324-f801-fd0f-00123b7c95b6"
+		"855dfbfc-8f89-24a5-d165-ea245daf8485"
 	],
 	"folders": [],
 	"timestamp": 1478823991244,
@@ -196,33 +195,12 @@
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1479790324531,
+			"time": 1480148492926,
 			"name": "localhost:3000/posts/create/johndoe",
 			"description": "creating post 2",
 			"collectionId": "aad833d9-3058-9e88-d63d-5af02244717b",
 			"responses": [],
-			"rawModeData": "{\r\n\t\"title\":\"test2\",\r\n\t\"description\":\"This is also a test\",\r\n\t\"price\":50,\r\n\t\"category\": \"tests\",\r\n\t\"state\": \"available\"\r\n}"
-		},
-		{
-			"id": "a59321fe-e324-f801-fd0f-00123b7c95b6",
-			"headers": "Content-Type: application/json\n",
-			"url": "localhost:3000/posts/delete",
-			"pathVariables": {},
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "aad833d9-3058-9e88-d63d-5af02244717b",
-			"data": [],
-			"dataMode": "raw",
-			"name": "localhost:3000/posts/delete",
-			"description": "delete post",
-			"descriptionFormat": "html",
-			"time": 1479846774357,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n\t\"postID\":1\r\n}"
+			"rawModeData": "{\r\n\t\"title\":\"test2\",\r\n\t\"description\":\"This is also a test\",\r\n\t\"price\":50,\r\n\t\"category\": \"tests\",\r\n\t\"state\": \"available\",\r\n\t\"longitude\": 34.0661290,\r\n\t\"latitude\": -118.4488420\r\n}"
 		},
 		{
 			"id": "b7230399-6af7-bbc2-b14d-c5b9c98b8880",
@@ -298,12 +276,12 @@
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1479099304883,
+			"time": 1480148740357,
 			"name": "localhost:3000/posts/create/jbruin2016",
 			"description": "creating post",
 			"collectionId": "aad833d9-3058-9e88-d63d-5af02244717b",
 			"responses": [],
-			"rawModeData": "{\r\n\t\"title\":\"test\",\r\n\t\"description\":\"This is a test\",\r\n\t\"price\":20,\r\n\t\"category\": \"other\",\r\n\t\"state\": \"available\"\r\n}"
+			"rawModeData": "{\r\n\t\"title\":\"test\",\r\n\t\"description\":\"This is a test\",\r\n\t\"price\":20,\r\n\t\"category\": \"other\",\r\n\t\"state\": \"available\",\r\n\t\"longitude\": -34.0661290,\r\n\t\"latitude\": -118.4488420\r\n}"
 		}
 	]
 }
