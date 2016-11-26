@@ -57,13 +57,13 @@ var getWatchlist = async (ctx) => {
 var addToWatchlist = async (ctx) => {
     console.log("adding post to watchlist");
     await pf.users.addToWatchlist(ctx.params.id, ctx.request.body.postID);
-    ctx.request.status = 200;
+    ctx.response.status = 200;
 }
 
 var removeFromWatchlist = async (ctx) => {
     console.log("removing post from watchlist");
     await pf.users.removeFromWatchlist(ctx.params.id, ctx.request.body.postID);
-    ctx.request.status = 200;
+    ctx.response.status = 200;
 }
 
 var getNotifications = async (ctx) => {
