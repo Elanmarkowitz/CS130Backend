@@ -1,5 +1,7 @@
 var db = require('../db');
 var userFunctions = require('../users');
+var distance = require("./distance.js");
+var _ = require('lodash');
 
 var getPost = exports.getPost = function (id){
     if (typeof(id) === 'number') {
@@ -35,8 +37,15 @@ exports.findAll = function (){
     return db.sequelize.Post.findAll();
 }
 
-exports.searchPosts = async function(searchterms){
+exports.searchPosts = async function(searchterms, optLoc){
     var results = await db.sequelize.Post.findAll(searchterms);
+    results = _.map(results, 'dataValues');
+    if (optLoc){
+        results = _.filter(results, (post)=>{
+            var disBetween = distance.getDistance(post.latitude, post.longitude, optLoc.latitude, optLoc.longitude,'M');
+            return disBetween <= optLoc.distance;
+        })
+    }
     return results;
 }
 

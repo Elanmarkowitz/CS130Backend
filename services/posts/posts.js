@@ -1,6 +1,8 @@
 var pf = require('../../platform');
 var _ =  require('lodash');
 
+
+
 var createPost = async (ctx) => {
     console.log("creating posts: " + ctx.request.body);
     ctx.response.status = 400;
@@ -34,10 +36,12 @@ var searchPosts = async (ctx) => {
     console.log("searching posts");
     ctx.response.status = 400;
     var searchterms = JSON.parse(ctx.query.searchterms);
-    var results = await pf.posts.searchPosts(searchterms);
+    debugger
+    var location = ctx.query.locationterm ? JSON.parse(ctx.query.locationterm) : false;
+    var results = await pf.posts.searchPosts(searchterms, location);
     if (results){
         ctx.response.status = 200;
-        ctx.response.body = _.map(results, 'dataValues');
+        ctx.response.body = results;
     }
 }
 
