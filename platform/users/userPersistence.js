@@ -39,7 +39,7 @@ var getWatchlist = exports.getWatchlist = async function(userID){
     return watchlist;
 }
 
-exports.getWatchedPosts = async function(userID){
+var getWatchedPosts = exports.getWatchedPosts = async function(userID){
     var watchlist = await getWatchlist(userID);
     var posts = await watchlist.getPosts();
     return posts;
@@ -47,7 +47,8 @@ exports.getWatchedPosts = async function(userID){
 
 exports.addToWatchlist = async function(userID, postID){
     var watchlist = await getWatchlist(userID);
-    await watchlist.addPost(postID);
+    if (watchlist)
+        await watchlist.addPost(postID);
     return
 }
 
@@ -58,9 +59,11 @@ exports.removeFromWatchlist = async function(userID, postID){
 }
 
 exports.getNotifications = async function(userID, lastcheck){
-    var watchlist = await getWatchlist(userID);
-    var posts = _.filter(_.map(results, 'dataValues'), (posts) => {
-        debugger
-        return (new Date(posts.updatedAt) > new Date(lastcheck));
+    var watchlist = await getWatchedPosts(userID);
+    var posts = _.filter(_.map(watchlist, 'dataValues'), (posts) => {
+        var t1 = new Date(posts.updatedAt);
+        var t2 = new Date(lastcheck);
+        return t1 > t2;
     });
+    return posts;
 }

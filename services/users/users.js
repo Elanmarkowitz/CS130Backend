@@ -68,11 +68,11 @@ var removeFromWatchlist = async (ctx) => {
 
 var getNotifications = async (ctx) => {
     console.log('getting ' + ctx.params.id + "'s notifications");
-    ctx.request.status = 400;
+    ctx.response.status = 400;
     var posts = await pf.users.getNotifications(ctx.params.id, ctx.query.timestamp);
     if (posts) {
-        ctx.request.status = 200;
-        ctx.request.body = posts;
+        ctx.response.status = 200;
+        ctx.response.body = posts;
     }
 }
 
